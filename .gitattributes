@@ -4,3 +4,5 @@
 *.cs text eol=lf
 *.sql text eol=lf
 *.png binary
+# Preserve byte-identical raw exports and their hash-bound summaries on every host.
+results/article-001/rc1-baseline-001/** -text

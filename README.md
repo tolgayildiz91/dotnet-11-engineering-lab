@@ -23,6 +23,6 @@ The comparison baseline is .NET 8, .NET 10 and the exact .NET 11 prerelease buil
 - Use independently designed fictional domains and synthetic datasets.
 - Preserve prerelease evidence when repeating experiments against General Availability builds.
 
-This repository is initialized for experiments. No performance results have been published yet.
+Article 001 now includes a six-workload .NET 8 / .NET 10 / .NET 11 RC1 baseline: [implementation and reproduction](benchmarks/article-001/README.md), [results and provenance](results/article-001/rc1-baseline-001/README.md). Primary and replication passes remain separate, with additional process-launch and disassembly evidence for dictionary lookup and payment-risk evaluation. The .NET 11 results are prerelease measurements; they do not establish GA performance.
 
 See [measurement methodology](docs/methodology.md) and [result provenance](docs/result-provenance.md).

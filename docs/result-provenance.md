@@ -6,4 +6,4 @@ A result bundle should include raw output, exact invocation, tool versions, work
 
 Screenshots must be actual browser renders of retained reports or captures of real local output. Remove user profile paths, host identifiers, credentials and unrelated machine details before contributing public artifacts. Keep hardware and software details necessary to interpret the experiment.
 
-No experimental data exists in this initial repository scaffold.
+Article 001 has a retained [RC1 baseline result set](../results/article-001/rc1-baseline-001/README.md), with separate primary and replication passes, supplemental diagnostics and disclosed limitations.
