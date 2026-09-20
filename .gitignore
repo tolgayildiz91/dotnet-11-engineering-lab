@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/node_modules/
+.vs/
+.idea/
+*.user
+*.suo
+.env
+.env.*
+*.pfx
+*.key
+*.pem
+BenchmarkDotNet.Artifacts/
