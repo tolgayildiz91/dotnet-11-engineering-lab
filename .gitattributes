@@ -6,3 +6,4 @@
 *.png binary
 # Preserve byte-identical raw exports and their hash-bound summaries on every host.
 results/article-001/rc1-baseline-001/** -text
+results/article-002/**/*-report-full-compressed.json -text
