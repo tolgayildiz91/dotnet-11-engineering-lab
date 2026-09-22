@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework><Features>runtime-async=on</Features>
+    <DefineConstants>$(DefineConstants);RUNTIME_ASYNC</DefineConstants>
+    <AssemblyName>Article002FamilyBRuntimeAsync</AssemblyName>
+  </PropertyGroup>
+  <Import Project="../../Shared.props"/>
+</Project>

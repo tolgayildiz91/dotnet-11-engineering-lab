@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <Features>runtime-async=off</Features><UseRuntimeAsync>false</UseRuntimeAsync>
+    <AssemblyName>Article002FamilyBConventional</AssemblyName>
+  </PropertyGroup>
+  <Import Project="../../Shared.props"/>
+</Project>

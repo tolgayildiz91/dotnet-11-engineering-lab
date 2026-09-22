@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <UseAppHost>false</UseAppHost><SelfContained>false</SelfContained>
+    <RollForward>Disable</RollForward><Deterministic>true</Deterministic>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <TieredCompilation>true</TieredCompilation><TieredPGO>true</TieredPGO>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RuntimeFrameworkVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.31</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.12</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion Condition="'$(TargetFramework)' == 'net11.0'">11.0.0-rc.1.26425.128</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.16.0-preview.1"/>
+    <Compile Include="$(MSBuildThisFileDirectory)shared/*.cs" Link="%(Filename)%(Extension)"/>
+  </ItemGroup>
+  <Target Name="RecordCompilation" AfterTargets="CoreCompile">
+    <WriteLinesToFile File="$(OutputPath)compilation.txt" Lines="SDK=$(NETCoreSdkVersion);Language=$(LangVersion);Target=$(TargetFramework);Runtime=$(RuntimeFrameworkVersion);RollForward=$(RollForward);Features=$(Features);UseRuntimeAsync=$(UseRuntimeAsync);EnablePreviewFeatures=$(EnablePreviewFeatures);@(ReferencePath->'%(FullPath)')" Overwrite="true"/>
+  </Target>
+</Project>
