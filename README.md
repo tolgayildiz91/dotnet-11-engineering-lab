@@ -1,30 +1,18 @@
 # .NET 11 Engineering Lab
 
-Reproducible backend experiments in C#, .NET, ASP.NET Core, EF Core and SQL Server, with a focus on performance, concurrency and observability.
+Reproducible C# experiments comparing runtime behavior, execution time and managed allocation. Each experiment includes source, semantic tests, pinned dependencies, reproduction commands and a concise measured dataset.
 
-The comparison baseline is .NET 8, .NET 10 and the exact .NET 11 prerelease build used by each experiment. Experiments record toolchain versions and workload configuration so results can be assessed in context.
+## Experiments
 
-## Repository layout
+| Experiment | Question | Reproduce | Results |
+| --- | --- | --- | --- |
+| Runtime baseline | How do six synthetic batch workloads compare across .NET 8, .NET 10 and .NET 11 RC1? | [Code and commands](benchmarks/article-001/README.md) | [Measurements and limitations](results/article-001/rc1-baseline-001/README.md) |
+| Runtime Async | How do conventional async implementations compare across runtimes, and what changes with application Runtime Async OFF/ON on .NET 11 RC1? | [Code and commands](benchmarks/article-002/README.md) | [Measurements and methodology](docs/article-002/README.md) |
 
-| Directory | Purpose |
-| --- | --- |
-| `src` | Executable sample applications and tests |
-| `benchmarks` | Benchmark projects and workload configurations |
-| `experiments` | Reproduction instructions and experiment definitions |
-| `results` | Versioned raw results and derived tables |
-| `sql` | Synthetic schemas, datasets and query evidence |
-| `docs` | Measurement methods and technical notes |
+## Requirements
 
-## Research standards
+The recorded experiments use Windows x64, SDK **11.0.100-rc.1.26425.128**, runtimes **8.0.31**, **10.0.12** and **11.0.0-rc.1.26425.128**, C# 12 and BenchmarkDotNet **0.16.0-preview.1**. Install the exact versions and run each experiment from its benchmark directory so its `global.json` applies. Both SDK and runtime roll-forward are disabled.
 
-- Separate documented behavior, local measurements and engineering interpretation.
-- Preserve absolute measurements and raw data, including null results and regressions.
-- Compare equivalent workloads and disclose runtime, compiler, database and configuration differences.
-- Use independently designed fictional domains and synthetic datasets.
-- Preserve prerelease evidence when repeating experiments against General Availability builds.
+Start with the linked restore, build and semantic-test commands, then run the benchmark passes serially in Release without a debugger. The workloads generate deterministic synthetic inputs; no database or external service is required.
 
-Article 001 now includes a six-workload .NET 8 / .NET 10 / .NET 11 RC1 baseline: [implementation and reproduction](benchmarks/article-001/README.md), [results and provenance](results/article-001/rc1-baseline-001/README.md). Primary and replication passes remain separate, with additional process-launch and disassembly evidence for dictionary lookup and payment-risk evaluation. The .NET 11 results are prerelease measurements; they do not establish GA performance.
-
-Article 002 provides two separate Runtime Async comparisons: conventional application code across .NET 8 / .NET 10 / .NET 11 RC1, and application Runtime Async OFF/ON on .NET 11 RC1. See [implementation and reproduction](benchmarks/article-002/README.md), [dataset and methodology](docs/article-002/README.md), [all numeric values](docs/article-002/all-values.csv) and [raw-result hashes](results/article-002/rc1-async-002/raw-files.json). Families and process passes remain separate.
-
-See [measurement methodology](docs/methodology.md) and [result provenance](docs/result-provenance.md).
+Results keep independent process passes separate and include absolute time, variability and allocation. RC1 measurements do not establish GA performance or production throughput. See [measurement methodology](docs/methodology.md) and each experiment's limitations before interpreting differences.

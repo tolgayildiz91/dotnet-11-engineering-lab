@@ -15,17 +15,30 @@ the enabled project selects the compiler feature directly. Neither preview langu
 mode nor `EnablePreviewFeatures` is set. Application feature selection does not
 control how the installed runtime libraries were built.
 
+## Restore and build
+
+```powershell
+dotnet restore family-a/Article002FamilyA.csproj --locked-mode --configfile NuGet.Config
+dotnet restore family-b/conventional/Article002FamilyBConventional.csproj --locked-mode --configfile NuGet.Config
+dotnet restore family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj --locked-mode --configfile NuGet.Config
+dotnet build family-a/Article002FamilyA.csproj -c Release --no-restore
+dotnet build family-b/conventional/Article002FamilyBConventional.csproj -c Release --no-restore
+dotnet build family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release --no-restore
+```
+
+Stop if any command fails. Run commands serially in the same shell.
+
 ## Semantic and stack checks
 
 Run all five checks before timing. Every command also captures live stacks before
 and after controlled suspension, and a separately caught exception stack.
 
 ```powershell
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net8.0 -- --self-test
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net10.0 -- --self-test
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net11.0 -- --self-test
-dotnet run --project family-b/conventional/Article002FamilyBConventional.csproj -c Release -- --self-test
-dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net8.0 --no-build -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net10.0 --no-build -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net11.0 --no-build -- --self-test
+dotnet run --project family-b/conventional/Article002FamilyBConventional.csproj -c Release --no-build -- --self-test
+dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release --no-build -- --self-test
 ```
 
 Output includes `ARTICLE002_RUNTIME`, `ARTICLE002_CAPABILITY`,
@@ -59,11 +72,11 @@ Run these five commands sequentially, without other heavy work. Each configurati
 and pass has a distinct artifact directory:
 
 ```powershell
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net8.0 -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a8"
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net10.0 -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a10"
-dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net11.0 -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a11"
-dotnet run --project family-b/conventional/Article002FamilyBConventional.csproj -c Release -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/b-off"
-dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/b-on"
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net8.0 --no-build -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a8"
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net10.0 --no-build -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a10"
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net11.0 --no-build -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/a11"
+dotnet run --project family-b/conventional/Article002FamilyBConventional.csproj -c Release --no-build -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/b-off"
+dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release --no-build -- --filter '*' --exporters json csv --artifacts "BenchmarkDotNet.Artifacts/reproduction/$pass/b-on"
 ```
 
 For the second independent process pass, set `$pass='pass2'` and execute the same
@@ -79,8 +92,7 @@ The child processes inherit the recorded `DOTNET_TieredCompilation` and
 `DOTNET_TieredPGO` environment variables. Their generated runtimeconfig files do
 not independently establish those tiering settings.
 
-`ARTICLE002_INPROCESS=1` selects an experimental fallback retained in the source.
-It was not used for the selected results and must not be mixed into their comparison.
+Keep `ARTICLE002_INPROCESS=0`: these results require generated benchmark child processes.
 
 ## Operation boundaries
 
@@ -104,5 +116,4 @@ Diagnostic methods use NoInlining and run outside timing; their live and excepti
 stacks are different observations, not interchangeable evidence.
 
 See the [dataset and methodology guide](../../docs/article-002/README.md),
-[all 60 numeric rows](../../docs/article-002/all-values.csv) and
-[raw-result inventory](../../results/article-002/rc1-async-002/raw-files.json).
+[all 60 numeric rows](../../docs/article-002/all-values.csv).

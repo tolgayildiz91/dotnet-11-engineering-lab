@@ -1,6 +1,6 @@
-# Article 002: Runtime Async reproduction and data
+# Runtime Async results
 
-The `rc1-async-002` dataset contains two separate comparisons: conventional application
+This dataset contains two separate comparisons: conventional application
 async across three runtime versions (Family A), and application Runtime Async OFF/ON
 on the same .NET 11 RC1 runtime (Family B). It makes no general performance or
 release-readiness claim.
@@ -41,29 +41,20 @@ method metadata during setup. Child tiering settings come from the recorded
 `DOTNET_TieredCompilation` and `DOTNET_TieredPGO` environment variables; the generated
 child runtimeconfig files do not independently establish those values.
 
-## Data map
+## Results
 
-| Artifact | Contents |
-| --- | --- |
-| [All values CSV](all-values.csv) | All 60 rows without display rounding: Mean, Error, StdDev, Median, N, bytes/op and Gen0/1/2 per 1,000 operations |
-| [Environment](../../results/article-002/rc1-async-002/environment.json) | Recorded study configuration |
-| [Raw inventory](../../results/article-002/rc1-async-002/raw-files.json) | SHA-256 hashes and relative paths for the 20 byte-identical raw BenchmarkDotNet JSON exports |
-| [Family A pass 1](../../results/article-002/rc1-async-002/family-a/pass1/summary.json) / [pass 2](../../results/article-002/rc1-async-002/family-a/pass2/summary.json) | Separate summaries and retained samples; each row names its adjacent raw JSON file |
-| [Family B pass 1](../../results/article-002/rc1-async-002/family-b/pass1/summary.json) / [pass 2](../../results/article-002/rc1-async-002/family-b/pass2/summary.json) | Separate OFF/ON summaries and retained samples |
-| [Family A comparisons](../../results/article-002/rc1-async-002/family-a/comparisons.json) / [Family B comparisons](../../results/article-002/rc1-async-002/family-b/comparisons.json) | Derived comparisons with passes kept separate |
-| [Semantic and stack captures](../../results/article-002/rc1-async-002/semantics/) | Five configuration captures; absolute checkout prefixes removed from exception source locations |
+[all-values.csv](all-values.csv) contains all 60 configuration/pass/workload rows without display rounding: mean, error, standard deviation, median, retained N, bytes per operation and GC collections per 1,000 operations. `a8`, `a10` and `a11` are Family A's conventional application configurations; `b-off` and `b-on` are Family B's .NET 11 RC1 compiler-feature configurations. Times are nanoseconds per complete measured operation. Passes and families remain separate.
 
 Each retained timing sample is a BenchmarkDotNet Workload/Result iteration's
 nanoseconds divided by operations. Error is its 99.9% Student-t confidence margin
 for retained iteration samples. It is not request latency, a prediction interval,
 or a replacement for independent process repetition. N is the actual retained
-sample count. Full exports preserve pilot, warmup and other measurement stages;
-use Workload/Result samples to reproduce these tables. GC columns report collections
+sample count. For local exports, use Workload/Result samples when calculating comparable statistics. GC columns report collections
 per 1,000 operations, not per operation. No request P95 or P99 is estimated.
 
 Any SMALL/INCONCLUSIVE classification accompanying these data is an engineering
 interpretation of effect size and sign reversals between process passes. It is
-not an output or significance classification produced by the comparison JSON.
+not a statistical significance classification.
 
 ## Measurement boundaries
 
@@ -87,27 +78,6 @@ integration. RC1 measurements do not establish .NET 11 GA behavior. Before/after
 background-process CPU samples cannot rule out interference during timing; no
 thermal telemetry or fixed processor affinity was collected.
 
-## Execution history
+## Figure
 
-Initial attempts encountered local process-pipe access restrictions. An experimental
-in-process attempt subsequently failed during WMI CPU detection. Neither contributed
-rows to this dataset. After local execution access was corrected, measurements used
-the normal generated-child toolchain throughout.
-
-An earlier complete pair of normal process passes was superseded after finding
-that an external CPU observer selected an integer overload and quantized its CPU
-deltas. The observer was corrected to use doubles, and both full passes were repeated
-with unchanged measured source, runtime pins and timing configuration. That earlier
-pair remains historical evidence and is excluded from this public dataset. The
-selected `rc1-async-002` data comes from the repeated pair.
-
-## Figures
-
-These renderings accompany the machine-readable values; use the CSV and raw files
-for full precision. The stack illustration represents diagnostic captures, not a
-timing result.
-
-- [Family A timing table](figures/family-a-time-table.png)
-- [Family B timing and allocation table](figures/family-b-time-allocation-table.png)
-- [Family B timing change](figures/family-b-time-change.png)
-- [Live-stack illustration](figures/live-stack-illustration.png)
+[Runtime Async timing change](figures/family-b-time-change.png) compares ON with OFF for each process pass. Negative values indicate lower time; use the CSV for absolute values and full precision.

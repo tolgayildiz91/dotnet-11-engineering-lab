@@ -1,8 +1,8 @@
-# Article 001 runtime and BCL baseline
+# Runtime baseline
 
-Six independently designed synthetic backend workloads, built with the same SDK and C# language version. .NET 11 is **RC1, not GA**. GA retesting will preserve the original RC evidence.
+Six independently designed synthetic backend workloads, built with the same SDK and C# language version. .NET 11 is **RC1, not GA**. GA results require separate measurements.
 
-Measured source commit: `03232fb0cf7e5dc68a83a3a4ca0b06216f1ddf9f`. See the [RC1 result set](../../results/article-001/rc1-baseline-001/README.md) for the environment, separate passes, uncertainty and file hashes.
+Measured source commit: `03232fb0cf7e5dc68a83a3a4ca0b06216f1ddf9f`. See the [RC1 result set](../../results/article-001/rc1-baseline-001/README.md) for the environment, separate passes, uncertainty and limitations.
 
 ## Reproduce
 
@@ -27,9 +27,9 @@ dotnet run -c Release -f net10.0 --no-build -- --filter '*' --exporters json csv
 dotnet run -c Release -f net8.0 --no-build -- --filter '*' --exporters json csv --artifacts BenchmarkDotNet.Artifacts/pass2-net8
 ```
 
-Use a new artifact directory for each execution and stop if any command fails. Run serially on an otherwise quiet workstation. Retain the console logs and full JSON. A nonzero exit or missing child runtime attestation invalidates a run. Each worker checks its compiled target against loaded CoreLib, x64 architecture, Workstation GC and debugger state. The harness preserves the current Windows power plan; record it before and after execution.
+Use a new artifact directory for each execution and stop if any command fails. Run serially on an otherwise quiet workstation. Keep generated output locally for analysis. A nonzero exit or missing child runtime attestation invalidates a run. Each worker checks its compiled target against loaded CoreLib, x64 architecture, Workstation GC and debugger state. The harness preserves the current Windows power plan; record it before and after execution.
 
-BenchmarkDotNet `0.16.0-preview.1` is an explicitly pinned prerelease dependency. Its adaptive pilot, warmup and measurement defaults are retained. Median is included; sample counts and raw measurements are available in JSON. MemoryDiagnoser reports allocations. The benchmark returns observable scalar values or escaping output arrays. An invocation means **one batch**, not one record. Ratios between different workload methods are meaningless; compare the same method across runtimes.
+BenchmarkDotNet `0.16.0-preview.1` is an explicitly pinned prerelease dependency. Its adaptive pilot, warmup and measurement defaults are retained. Median is included; retained sample counts are included in the result CSV. MemoryDiagnoser reports allocations. The benchmark returns observable scalar values or escaping output arrays. An invocation means **one batch**, not one record. Ratios between different workload methods are meaningless; compare the same method across runtimes.
 
 ## Workloads
 
@@ -60,8 +60,4 @@ dotnet run -c Release -f net11.0 --no-build -- --filter '*EvaluatePaymentRisk*' 
 
 Keep the original full JSON and `*-asm.md`. For launch summaries, select measurements with `IterationMode == Workload` and `IterationStage == Result`, group by `LaunchIndex`, and calculate `Nanoseconds / Operations` for each retained sample. Retained N can differ from the Actual iteration count. Do not substitute BDN's pooled diagnostic statistics for separate launch means or merge diagnostic observations into either original pass. The disassembly exporter does not identify a separate code listing for each timed launch.
 
-The recorded first .NET 11 suite run overlapped file/hash collection for completed earlier builds; the second suite remains separate replication. A runtime-selection test process overlapped the .NET 8 supplemental run, making all its diagnostic launch rows potentially affected. Use the [result-set hygiene disclosures](../../results/article-001/rc1-baseline-001/README.md#files-and-sha-256-verification) when interpreting the recorded data; these diagnostic .NET 8 values do not establish a clean baseline or a quantified benefit.
-
-The recorded payment runs support no stable ranking of either .NET 10 or .NET 11 RC1 against .NET 8. Dictionary lookup remains in a lower time band on both newer runtimes in the two suites and selected diagnostics. Captured comparer specialization and inlining are observations; they do not identify a single runtime PR or isolate its share of the timing difference.
-
-The result set preserves exact environment, original observations, variability and provenance. Future GA measurements require a new result set; retain this RC1 baseline unchanged.
+See the [recorded result limitations](../../results/article-001/rc1-baseline-001/README.md#limitations), including background interference and inconclusive payment rankings. Supplemental observations must remain separate from the main passes.

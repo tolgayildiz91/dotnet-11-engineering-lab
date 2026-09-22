@@ -1,24 +1,20 @@
-# Article 001: RC1 baseline results
+# Runtime baseline results
 
-Measured on 20 September 2026, using source commit `03232fb0cf7e5dc68a83a3a4ca0b06216f1ddf9f`. .NET 11 is **11.0.0-rc.1.26425.128**, a prerelease build; these observations do not establish GA performance. [Reproduction commands and workload boundaries](../../../benchmarks/article-001/README.md) describe the exact implementation.
+Measured on 20 September 2026 from source commit `03232fb0cf7e5dc68a83a3a4ca0b06216f1ddf9f`. The .NET 11 version is **11.0.0-rc.1.26425.128**, a prerelease build. [Code and reproduction commands](../../../benchmarks/article-001/README.md).
 
-## Environment and measurement
+## Environment and units
 
-| Setting | Recorded value |
-|---|---|
-| CPU | AMD Ryzen 9 9950X3D; 1 processor, 16 physical cores, 32 logical cores |
-| OS | Windows 11 25H2, build 10.0.26200.9457 |
-| Architecture / JIT | x64 / RyuJIT; no debugger attached |
-| SDK / language | 11.0.100-rc.1.26425.128 / C# 12.0 |
+| Setting | Value |
+| --- | --- |
+| CPU / memory | AMD Ryzen 9 9950X3D, 16 cores / 32 threads; 64 GB installed RAM |
+| OS / architecture | Windows 11 25H2 build 26200.9457 / x64 |
+| SDK / language | 11.0.100-rc.1.26425.128 / C# 12 |
 | Runtimes | 8.0.31; 10.0.12; 11.0.0-rc.1.26425.128 |
-| BenchmarkDotNet | 0.16.0-preview.1, pinned prerelease dependency |
-| Build / GC | Release; Workstation GC, concurrent enabled |
-| Runtime settings | Tiered compilation and TieredPGO enabled; exact runtime selection; roll-forward disabled |
-| Host controls | Existing power plan retained; no affinity pinning; thermal state unobserved |
+| BenchmarkDotNet | 0.16.0-preview.1; adaptive pilot, warmup and measurement defaults |
+| Build / GC / JIT | Release; Workstation concurrent GC; tiered compilation and tiered PGO enabled |
+| Host controls | Existing power plan retained; no debugger, fixed affinity or thermal telemetry |
 
-Each invocation measures one complete synthetic batch. Means are **ns/batch**, allocations are managed **B/batch**. Batch sizes range from 256 to 4,096 elements; compare a method only with itself across runtimes. Setup is excluded; cloning, sorting and the returned array are included in SortScanSequence, with no timed second traversal.
-
-[summary.json](summary.json) and [summary.csv](summary.csv) retain mean, original BDN error margin, standard deviation, median, retained N, allocation and GC rates. Error is BDN `ConfidenceInterval.Margin`; N counts retained warm Workload/Result iterations within a process, not independent launches or business requests. GC rates are collections per 1,000 batches, not pause durations. Within-launch precision does not bound variation between fresh processes.
+[summary.csv](summary.csv) contains all 36 primary/replication rows without display rounding. Each invocation measures one complete batch: time is **ns/batch**, allocation is **B/batch**, and GC rates are collections per 1,000 batches. Error is the original BDN confidence-interval margin; `n` is the retained Workload/Result iteration count. These are within-process statistics, not request percentiles or independent launches.
 
 ## Primary pass1
 
@@ -48,53 +44,19 @@ The columns below are mean ns/batch. Allocations are identical across all three 
 
 Pass1 ran .NET 8, .NET 10, .NET 11; pass2 reversed that order. These passes are never pooled. For a comparison within one pass, ratio = target mean / baseline mean and time change% = `(ratio - 1) * 100`. A negative time change is not the same percentage as the reciprocal throughput gain.
 
-## Supplemental launches and generated code
+## Supplemental results and generated code
 
-The two original .NET 11 payment means disagree materially. The subsequent diagnostic selection comprises two methods and three fresh process launches per runtime. [diagnostics/summary.json](diagnostics/summary.json) preserves launch indices, retained samples, N, mean, sample standard deviation, median, minimum and maximum. The original diagnostic full JSON preserves BDN's pooled statistics, but the table below uses separate launch means.
+[supplemental.csv](supplemental.csv) contains 18 per-launch summaries for dictionary lookup and payment evaluation: three launches per runtime and workload. These supplement the two main passes and are not pooled into them. Values come from Workload/Result samples grouped by launch, with sample standard deviation (N-1).
 
-| Method | Runtime | Launch 1 ns/batch | Launch 2 ns/batch | Launch 3 ns/batch |
-|---|---|---:|---:|---:|
-| ResolveInventory | 8.0.31 † | 11941.36 | 11969.93 | 12127.58 |
-| ResolveInventory | 10.0.12 | 6201.99 | 6185.84 | 6176.40 |
-| ResolveInventory | 11 RC1 | 6077.40 | 6124.52 | 6177.13 |
-| EvaluatePaymentRisk | 8.0.31 † | 809.68 | 848.00 | 819.07 |
-| EvaluatePaymentRisk | 10.0.12 | 771.22 | 770.98 | 1061.02 |
-| EvaluatePaymentRisk | 11 RC1 | 1061.41 | 730.53 | 1061.35 |
+**Payment comparisons are inconclusive for both .NET 10 and .NET 11 RC1 versus .NET 8.** Newer-runtime supplemental launches occupy faster and slower timing bands. Selecting the fastest launch or combining the discrepancy into one mean would conceal this variability.
 
-† All .NET 8 supplemental launch rows are potentially affected by an overlapping runtime-selection test process. The affected workload or launch cannot be identified. Preserve these values, but do not use them as a clean baseline, as evidence of .NET 8 stability/instability, or to quantify a diagnostic cross-runtime benefit. See the measurement-hygiene details below.
+Dictionary lookup remains in a lower time band on both newer runtimes in the two main passes. [Selected disassembly excerpts](dictionary-disassembly.md) show a separate FindValue call with indirect comparer calls on .NET 8 and an OrdinalComparer guard with hash arithmetic on the newer runtimes. This is a generated-code observation, not a single-change causal attribution or universal Dictionary.TryGetValue speedup.
 
-**Payment comparisons are INCONCLUSIVE for both .NET 10 and .NET 11 RC1 versus .NET 8.** The newer runtimes show faster and slower launch bands. Two similar .NET 10 suite means do not establish a robust regression when subsequent launches reverse the ranking. Selecting the fastest launch or pooling the discrepancy into one mean would hide this uncertainty.
+## Limitations
 
-Dictionary lookup stays in a lower time band on .NET 10 and .NET 11 across the two suites and these selected launches. In the captured [.NET 8 listing](diagnostics/raw/8.0.31.asm.md), ResolveInventory calls a separate FindValue with indirect comparer calls. The [.NET 10](diagnostics/raw/10.0.12.asm.md) and [.NET 11](diagnostics/raw/11.0.0-rc.1.26425.128.asm.md) listings contain an OrdinalComparer guard, string-hash arithmetic and dictionary traversal; fallback comparer calls remain. This is a generated-code observation alongside the measurements, without a single-PR causal attribution or a general Dictionary.TryGetValue speedup claim.
-
-The artifact has one listing per workload/helper rather than a matched listing for every measured launch. Payment block-order and instruction differences cannot identify the cause of its timing bands. Three launches, no hardware branch counters and no controlled feature ablation leave scheduling, tiering, code placement, cache state and branch prediction unresolved.
-
-The scalar control establishes no material .NET 11 versus .NET 10 gain. Object transformation allocates the same 10,264 B/batch everywhere; its returned object graph escapes. Sorting allocates the same 8,216 B/batch and measures clone plus sort, so its timings are not isolated Array.Sort timings. These warm, single-threaded synthetic batches do not measure endpoint latency, tail latency, production throughput or Server GC behavior.
-
-## Files and SHA-256 verification
-
-Measurement hygiene limitation: file/hash collection for the completed .NET 8 and .NET 10 builds overlapped the first .NET 11 suite run. Its CPU and file-I/O impact was not measured. The reverse-order second suite did not overlap those captures and remains separate replication; the primary table was not replaced. Short before/after CPU snapshots do not establish a noise-free workstation. No CPU affinity, thermal readings or hardware branch counters were recorded. Interpret small changes with those limits, and retain both payment timing bands.
-
-A failed runtime-selection test process also overlapped the .NET 8 supplemental diagnostic job. Precise per-launch overlap could not be established from the retained timestamps; conservatively treat all .NET 8 diagnostic launch means and spreads as potentially affected, not evidence of .NET 8 stability or instability. The two main suite passes are unaffected by this probe. Background applications remained open; process inventories were capped at 15 entries and CPU deltas covered only three-second spot samples.
-
-- [provenance.json](provenance.json) binds the measured source commit, six original suite JSON reports, three diagnostic JSON reports, three disassembly files, and derived summaries.
-- `raw/pass1-<runtime>.json` is primary evidence; `raw/pass2-<runtime>.json` is replication evidence. Diagnostic files under `diagnostics/raw` are supplemental only.
-- Original BDN full JSON and disassembly are copied byte-for-byte. Public summaries contain derived statistics and references to these files. The provenance inventory covers the exported data; this README and separately supplied figures are outside that inventory.
-
-Run from this result directory in PowerShell. The first check verifies provenance itself against the digest recorded below; the loop then verifies every data file it lists. SHA-256 checks integrity against this record, not independent authenticity of the repository.
-
-```powershell
-$expectedProvenance = '5a870d275a048d024173bafaaf5aabef3409473b16f80d2382a8c3b0d2eb9ff2'
-if ((Get-FileHash -LiteralPath ./provenance.json -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedProvenance) {
-    throw 'Provenance SHA-256 mismatch'
-}
-$manifest = Get-Content -LiteralPath ./provenance.json -Raw | ConvertFrom-Json
-foreach ($entry in $manifest.files) {
-    $candidate = Join-Path -Path (Get-Location).Path -ChildPath $entry.path
-    $actual = (Get-FileHash -LiteralPath $candidate -Algorithm SHA256).Hash.ToLowerInvariant()
-    if ($actual -ne $entry.sha256 -or (Get-Item -LiteralPath $candidate).Length -ne $entry.bytes) {
-        throw "Result integrity mismatch: $($entry.path)"
-    }
-}
-'All inventoried result files match their SHA-256 and byte lengths.'
-```
+- The first .NET 11 main pass had concurrent background CPU/file-I/O activity with unmeasured impact; the reverse-order second pass remains separate replication.
+- All .NET 8 supplemental rows are marked `potential_interference` because another process overlapped that run and per-launch impact is unknown. Do not use those rows as a clean baseline, to infer .NET 8 stability, or to quantify a diagnostic cross-runtime benefit. The two main .NET 8 passes are unaffected by that overlap.
+- Background applications were present. Short CPU spot samples cannot rule out interference; no fixed affinity, thermal telemetry or hardware branch counters were collected.
+- One disassembly listing per workload/helper does not identify the code executed in every measured launch or explain the payment timing bands.
+- These warm, single-threaded batches use Workstation GC and fixed synthetic distributions. They do not measure endpoint latency, tail latency, production throughput or Server GC behavior. RC1 results do not establish GA performance.
+- TransformCheckpoints allocates 10,264 B/batch and returns an escaping object graph. SortScanSequence allocates 8,216 B/batch and includes cloning plus sorting, with no timed second traversal. The scalar control shows no material .NET 11 versus .NET 10 gain.
