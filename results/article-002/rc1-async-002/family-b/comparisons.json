@@ -1,0 +1,436 @@
+{
+  "within_pass": [
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "LayeredSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "TaskSuspension",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "TaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-off",
+      "workload": "ValueTaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "baseline": "b-off",
+      "ratio": 0.7401746022597938,
+      "mean_change_percent": -25.98253977402062,
+      "allocation_change_bytes": -72
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "baseline": "b-off",
+      "ratio": 0.7693825262834406,
+      "mean_change_percent": -23.06174737165594,
+      "allocation_change_bytes": -72
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "LayeredSynchronous",
+      "baseline": "b-off",
+      "ratio": 0.5397690447017325,
+      "mean_change_percent": -46.023095529826755,
+      "allocation_change_bytes": -264
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "TaskSuspension",
+      "baseline": "b-off",
+      "ratio": 1.4584006112576096,
+      "mean_change_percent": 45.840061125760954,
+      "allocation_change_bytes": 72
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "TaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.2495047759964444,
+      "mean_change_percent": 24.950477599644437,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 1,
+      "case_id": "b-on",
+      "workload": "ValueTaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.3463814076859637,
+      "mean_change_percent": 34.63814076859637,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "LayeredSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "TaskSuspension",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "TaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-off",
+      "workload": "ValueTaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.0,
+      "mean_change_percent": 0.0,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "baseline": "b-off",
+      "ratio": 0.7402051717459203,
+      "mean_change_percent": -25.979482825407974,
+      "allocation_change_bytes": -72
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "baseline": "b-off",
+      "ratio": 0.7708852686862422,
+      "mean_change_percent": -22.911473131375782,
+      "allocation_change_bytes": -72
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "LayeredSynchronous",
+      "baseline": "b-off",
+      "ratio": 0.5527913407242931,
+      "mean_change_percent": -44.720865927570685,
+      "allocation_change_bytes": -264
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "TaskSuspension",
+      "baseline": "b-off",
+      "ratio": 1.4595080728178498,
+      "mean_change_percent": 45.950807281784975,
+      "allocation_change_bytes": 72
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "TaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.2356084170934458,
+      "mean_change_percent": 23.560841709344583,
+      "allocation_change_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "pass": 2,
+      "case_id": "b-on",
+      "workload": "ValueTaskSynchronous",
+      "baseline": "b-off",
+      "ratio": 1.3811563549024164,
+      "mean_change_percent": 38.11563549024164,
+      "allocation_change_bytes": 0
+    }
+  ],
+  "between_pass": [
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "pass1_mean_ns": 162.5972030724274,
+      "pass2_mean_ns": 162.82554309901096,
+      "pass2_change_percent": 0.1404329362798773,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "pass1_mean_ns": 172.67964509318313,
+      "pass2_mean_ns": 173.11184008889964,
+      "pass2_change_percent": 0.2502871693321307,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "LayeredSynchronous",
+      "pass1_mean_ns": 29.05083278595871,
+      "pass2_mean_ns": 28.21391416525418,
+      "pass2_change_percent": -2.8808765203765296,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "TaskSuspension",
+      "pass1_mean_ns": 45.659891577149914,
+      "pass2_mean_ns": 45.86100143035723,
+      "pass2_change_percent": 0.44045188514629796,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "TaskSynchronous",
+      "pass1_mean_ns": 8.726802320501472,
+      "pass2_mean_ns": 8.701295262764491,
+      "pass2_change_percent": -0.29228412424398,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-off",
+      "workload": "ValueTaskSynchronous",
+      "pass1_mean_ns": 12.378263565190734,
+      "pass2_mean_ns": 12.097605540124112,
+      "pass2_change_percent": -2.2673456869658826,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "pass1_mean_ns": 120.35032011268886,
+      "pass2_mean_ns": 120.52430909422615,
+      "pass2_change_percent": 0.14456877337292173,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "pass1_mean_ns": 132.85670157952117,
+      "pass2_mean_ns": 133.4493673597012,
+      "pass2_change_percent": 0.4460940043926165,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "LayeredSynchronous",
+      "pass1_mean_ns": 15.680740260666704,
+      "pass2_mean_ns": 15.596407438490983,
+      "pass2_change_percent": -0.5378114857706007,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "TaskSuspension",
+      "pass1_mean_ns": 66.59041378607161,
+      "pass2_mean_ns": 66.93450181511733,
+      "pass2_change_percent": 0.5167230679045565,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "TaskSynchronous",
+      "pass1_mean_ns": 10.904181178643443,
+      "pass2_mean_ns": 10.75139366628713,
+      "pass2_change_percent": -1.4011828110079172,
+      "allocation_delta_bytes": 0
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "workload": "ValueTaskSynchronous",
+      "pass1_mean_ns": 16.665863923609376,
+      "pass2_mean_ns": 16.708684770845096,
+      "pass2_change_percent": 0.25693745869999063,
+      "allocation_delta_bytes": 0
+    }
+  ],
+  "interpretation": [
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=False]",
+      "pass1_change_percent": -25.98253977402062,
+      "pass2_change_percent": -25.979482825407974,
+      "max_between_pass_drift_percent": 0.14456877337292173,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "LayeredSuspension[CorrelationState=True]",
+      "pass1_change_percent": -23.06174737165594,
+      "pass2_change_percent": -22.911473131375782,
+      "max_between_pass_drift_percent": 0.4460940043926165,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "LayeredSynchronous",
+      "pass1_change_percent": -46.023095529826755,
+      "pass2_change_percent": -44.720865927570685,
+      "max_between_pass_drift_percent": 2.8808765203765296,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "TaskSuspension",
+      "pass1_change_percent": 45.840061125760954,
+      "pass2_change_percent": 45.950807281784975,
+      "max_between_pass_drift_percent": 0.5167230679045565,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "TaskSynchronous",
+      "pass1_change_percent": 24.950477599644437,
+      "pass2_change_percent": 23.560841709344583,
+      "max_between_pass_drift_percent": 1.4011828110079172,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    },
+    {
+      "family": "family-b",
+      "case_id": "b-on",
+      "baseline": "b-off",
+      "workload": "ValueTaskSynchronous",
+      "pass1_change_percent": 34.63814076859637,
+      "pass2_change_percent": 38.11563549024164,
+      "max_between_pass_drift_percent": 2.2673456869658826,
+      "label": "OBSERVED_DIRECTION_ONLY",
+      "reasons": [
+        "descriptive direction only; two process passes cannot establish significance"
+      ]
+    }
+  ],
+  "formula": "(case mean / baseline mean - 1) * 100; negative means lower elapsed time",
+  "classification_policy": "Descriptive heuristic only: sign reversal, drift >= smaller absolute effect, or overlapping iteration margins => SMALL/INCONCLUSIVE. Otherwise <5% in both passes => SMALL. No significance claim or pooled estimate."
+}

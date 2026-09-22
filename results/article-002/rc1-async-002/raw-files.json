@@ -1,0 +1,104 @@
+{
+  "files": [
+    {
+      "file": "family-a/pass1/a8-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "c896271468e9b0b9ee1f9e8146f74e47ea9228ec3c039683e8b6ba7fe6128fc9",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass1/a8-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "c70c3170e702302bbdbde5afb947dab02d0a706311ca9897712a104f274e7da2",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass1/a10-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "b3240d719b9518ca38a0d49a89f8124cf0926789542c4270e80d770f2441eb61",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass1/a10-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "3b91997085f23aedd48b04ad8d40a8578b22da706416482e40fa932bf3c52513",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass1/a11-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "f130294756463b649aca7646eff288692ef71aa090873fa70c3c2370c466488e",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass1/a11-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "833d4d946f9a7f6334b0c83f5b781e548dc78570c8c92c54fb7461d655b37767",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a8-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "3e8b9c3f3deef87ece6df04b7cb3dedd385df329f345593b93f1ee5494720c6a",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a8-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "bf353be8ece98790653c543e92b02a4b7209032638c454fe24eb4c946c4f9888",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a10-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "e629358ff40b0ef0458275035822e94d70fb286922550cadf5ad24fb1d16287f",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a10-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "2cc1fd1f6d7f04230a427576c410ebb4c77a73f5a509499bb19982e3d26b5364",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a11-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "035e9fac67410039e6eed1d5bc76ef348651249081fe8b8e3efa5d56585d838b",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-a/pass2/a11-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "67e731a52a4ddb690bf988d1cb5846ef43650e559b3f75cea9a0a42c02bb7747",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass1/b-off-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "41d44cff5f3f2714b4c127862d6266bf18cdadbc9d13a99f991a6a4cdff9db82",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass1/b-off-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "8fcfba3cb5d29d96f426cbd74ea2ea7c510a01952b904d81f6e9e7f0dc9d6f1a",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass1/b-on-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "5b3346b66da07b1de362312cdabbd79cf1a649cd4e5a924957226d1efdd4e0fa",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass1/b-on-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "b17c853f9c75b9da31f07a897903a5f8187b01fc183e5998589ec78d9b44b866",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass2/b-off-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "0c78146e0d4b5f79b77281bd16f5be2a580a4801544c392bba778a9136179968",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass2/b-off-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "0a035d86d51f0f1e073f4d032eaed08a9ee178f2a4dd448e9741a7d0b838ea9d",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass2/b-on-EngineeringLab.Article002.LayeredSuspensionBenchmarks-report-full-compressed.json",
+      "sha256": "bd00be7f9583d659c5acb2743bee8eeee14341cbc146b3e074edb1a92be157ae",
+      "operation": "byte-identical raw BDN JSON copy"
+    },
+    {
+      "file": "family-b/pass2/b-on-EngineeringLab.Article002.AsyncBenchmarks-report-full-compressed.json",
+      "sha256": "0a7897762d11f64b40bc8dabd0264bbd387e4638da76e64ddbbbd56d21662720",
+      "operation": "byte-identical raw BDN JSON copy"
+    }
+  ]
+}

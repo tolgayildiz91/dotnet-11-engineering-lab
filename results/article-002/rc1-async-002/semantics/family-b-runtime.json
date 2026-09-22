@@ -1,0 +1,138 @@
+{
+  "provenance": {
+    "original_stdout_sha256": "5a675c9d8d003c1a6263ffed5f235cf56cb3056e6a0d4df4ccaf965c8735a26e",
+    "projection": "ARTICLE002 JSON lines; only absolute public-checkout prefix removed from exception source paths"
+  },
+  "observations": {
+    "ARTICLE002_RUNTIME": {
+      "expected": "11.0.0-rc.1.26425.128",
+      "actual": "11.0.0-rc.1.26425.128",
+      "loadedDirectory": "11.0.0-rc.1.26425.128",
+      "targetFramework": "net11.0",
+      "serverGC": false,
+      "debugger": false,
+      "architecture": "X64",
+      "synchronizationContext": "null",
+      "coreLibVersion": "11.0.0-rc.1.26425.128+3551975be08744f0418857c5bed8ab1545c5dd47"
+    },
+    "ARTICLE002_CAPABILITY": {
+      "expectedRuntimeAsync": true,
+      "methods": [
+        {
+          "name": "DiagnosticExceptionLeaf",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "DiagnosticExceptionMiddle",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "DiagnosticExceptionOuter",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "DiagnosticLeaf",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "DiagnosticMiddle",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "DiagnosticOuter",
+          "flags": 8200,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "LayeredSuspended",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "LayeredSynchronous",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "SuspendedLayer2",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "SuspendedLayer3",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "SyncLayer2",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "SyncLayer3",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "TaskSuspended",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "TaskSynchronous",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        },
+        {
+          "name": "ValueTaskSynchronous",
+          "flags": 8192,
+          "runtimeAsync": true,
+          "stateMachine": null
+        }
+      ]
+    },
+    "ARTICLE002_SEMANTICS": {
+      "schemaVersion": 1,
+      "status": "PASS",
+      "seed": 20260922,
+      "amount": 34106,
+      "salt": 1163217566,
+      "Checksum": 1167839340,
+      "singleOperationCount": 1,
+      "layeredOperationCount": 4,
+      "synchronousCompletion": true,
+      "noncachedTaskResult": true,
+      "incompleteBeforeRelease": true,
+      "sameThreadGateResumption": true,
+      "contextPropagation": true,
+      "contextIsolation": true,
+      "cancellationTokenPreserved": true,
+      "gateExceptionIdentityPreserved": true,
+      "invalidAmountRejected": true
+    },
+    "ARTICLE002_STACKS": {
+      "BeforeSuspension": "   at EngineeringLab.Article002.Workloads.DiagnosticLeaf(Task gate)\r\n   at EngineeringLab.Article002.Workloads.DiagnosticMiddle(Task gate)\r\n   at EngineeringLab.Article002.Workloads.DiagnosticOuter(Task gate)\r\n   at EngineeringLab.Article002.Workloads.CaptureDiagnosticStacks()\r\n   at EngineeringLab.Article002.Program.Main(String[] args)\r\n",
+      "AfterSuspension": "   at EngineeringLab.Article002.Workloads.DiagnosticLeaf(Task gate)\r\n   at System.Runtime.CompilerServices.AsyncHelpers.RuntimeAsyncTask`1.ExecuteDirectly(Thread threadPoolThread)\r\n   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)\r\n   at System.Threading.Tasks.Task`1.TrySetResult(TResult result)\r\n   at System.Threading.Tasks.TaskCompletionSource`1.SetResult(TResult result)\r\n   at EngineeringLab.Article002.Workloads.CaptureDiagnosticStacks()\r\n   at EngineeringLab.Article002.Program.Main(String[] args)\r\n",
+      "ExceptionStack": "   at EngineeringLab.Article002.Workloads.DiagnosticThrow() in benchmarks/article-002/shared/Workloads.cs:line 133\r\n   at EngineeringLab.Article002.Workloads.DiagnosticExceptionLeaf(Task gate) in benchmarks/article-002/shared/Workloads.cs:line 129\r\n   at EngineeringLab.Article002.Workloads.DiagnosticExceptionMiddle(Task gate) in benchmarks/article-002/shared/Workloads.cs:line 123\r\n   at EngineeringLab.Article002.Workloads.DiagnosticExceptionOuter(Task gate) in benchmarks/article-002/shared/Workloads.cs:line 120\r\n   at EngineeringLab.Article002.Workloads.CaptureDiagnosticStacks() in benchmarks/article-002/shared/Workloads.cs:line 94"
+    }
+  }
+}

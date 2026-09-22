@@ -1,0 +1,29 @@
+{
+  "sdk": "11.0.100-rc.1.26425.128",
+  "runtimes": [
+    "8.0.31",
+    "10.0.12",
+    "11.0.0-rc.1.26425.128"
+  ],
+  "benchmarkdotnet": "0.16.0-preview.1",
+  "language": "C# 12",
+  "cpu": "AMD Ryzen 9 9950X3D",
+  "ram": "64 GB installed RAM (61.56 GiB reported usable)",
+  "os": "Windows 11 25H2 build 26200.9457",
+  "architecture": "x64",
+  "gc": "Workstation concurrent",
+  "power_plan": "Balanced",
+  "roll_forward": "Disable",
+  "tiered_compilation": true,
+  "tiered_pgo": true,
+  "debugger": false,
+  "toolchain": "normal generated benchmark child processes",
+  "warmups": 5,
+  "target_iterations": 12,
+  "target_iteration_ms": 250,
+  "process_passes": 2,
+  "pass2_order": "reverse configuration order",
+  "thermal_telemetry": "not measured",
+  "processor_affinity": "not pinned",
+  "source_commit": "74be9cdf1739f05b5c5015a5e800be5dfe8bb3ef"
+}
