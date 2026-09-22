@@ -12,11 +12,11 @@ The .NET 11 libraries are independently built; conventional application code doe
 not imply that runtime libraries use conventional async.
 
 ```powershell
-dotnet run --project family-a/Conventional.csproj -c Release -f net8.0 -- --self-test
-dotnet run --project family-a/Conventional.csproj -c Release -f net10.0 -- --self-test
-dotnet run --project family-a/Conventional.csproj -c Release -f net11.0 -- --self-test
-dotnet run --project family-b/conventional/Conventional.csproj -c Release -- --self-test
-dotnet run --project family-b/runtime-async/RuntimeAsync.csproj -c Release -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net8.0 -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net10.0 -- --self-test
+dotnet run --project family-a/Article002FamilyA.csproj -c Release -f net11.0 -- --self-test
+dotnet run --project family-b/conventional/Article002FamilyBConventional.csproj -c Release -- --self-test
+dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release -- --self-test
 ```
 
 Each invocation verifies exact runtime, x64, Workstation GC, absent debugger,
@@ -36,7 +36,7 @@ $env:ARTICLE002_INPROCESS='1'
 $env:DOTNET_ROLL_FORWARD='Disable'
 $env:DOTNET_TieredCompilation='1'
 $env:DOTNET_TieredPGO='1'
-dotnet run --project family-b/runtime-async/RuntimeAsync.csproj -c Release -- --filter '*' --exporters json csv
+dotnet run --project family-b/runtime-async/Article002FamilyBRuntimeAsync.csproj -c Release -- --filter '*' --exporters json csv
 ```
 
 The controlled suspension gate is incomplete at method entry and is released only
