@@ -6,6 +6,8 @@ implementation, using reference and value payloads independently. It tests
 compiler diagnostics, defaults, JSON behavior and matched construction/handling.
 This is a hobby experiment, with no database or external application data.
 
+See [measured results and limitations](RESULTS.md) for both passes and allocation.
+
 ## Build and check semantics
 
 Run from this directory on Windows x64 with the exact SDK/runtime in `global.json`
