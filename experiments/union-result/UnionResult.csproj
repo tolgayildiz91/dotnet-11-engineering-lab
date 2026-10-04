@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup>
+  <OutputType>Exe</OutputType><TargetFramework>net11.0</TargetFramework><AssemblyName>UnionResult</AssemblyName>
+  <LangVersion>preview</LangVersion><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+  <UseAppHost>false</UseAppHost><SelfContained>false</SelfContained><UseSharedCompilation>false</UseSharedCompilation>
+  <RuntimeFrameworkVersion>11.0.0-rc.1.26425.128</RuntimeFrameworkVersion><RollForward>Disable</RollForward>
+  <Optimize>true</Optimize><Deterministic>true</Deterministic><RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  <ServerGarbageCollection>false</ServerGarbageCollection><ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+  <TieredCompilation>true</TieredCompilation><TieredPGO>true</TieredPGO>
+ </PropertyGroup>
+ <ItemGroup><PackageReference Include="BenchmarkDotNet" Version="0.16.0-preview.1"/><Compile Remove="fixtures/**/*.cs"/></ItemGroup>
+ <ItemGroup><RuntimeHostConfigurationOption Include="System.Runtime.ReadyToRun" Value="true"/></ItemGroup>
+</Project>
