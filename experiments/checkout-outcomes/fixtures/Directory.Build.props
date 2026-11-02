@@ -1,0 +1,13 @@
+<Project>
+  <!-- Common fixture settings; each fixture csproj picks its TFM, language version and exact source files. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Disable</RollForward>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Shared/Model.cs" />
+  </ItemGroup>
+</Project>

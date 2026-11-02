@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <RuntimeFrameworkVersion>8.0.33</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Baseline/Result.cs" />
+    <Compile Include="../src/BaselineConsumerNoDiscard.cs" />
+    <Compile Include="../src/BaselineMain4.cs" />
+  </ItemGroup>
+</Project>

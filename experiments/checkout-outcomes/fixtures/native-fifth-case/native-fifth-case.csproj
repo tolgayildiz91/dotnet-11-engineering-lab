@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>15</LangVersion>
+    <RuntimeFrameworkVersion>11.0.0-rc.3.26522.148</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../src/Union5.cs" />
+    <Compile Include="../src/Consumer.cs" />
+    <Compile Include="../src/MainFifth.cs" />
+  </ItemGroup>
+</Project>

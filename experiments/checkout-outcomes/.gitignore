@@ -1,0 +1,4 @@
+**/bin/
+**/obj/
+.cli-home/
+evidence/

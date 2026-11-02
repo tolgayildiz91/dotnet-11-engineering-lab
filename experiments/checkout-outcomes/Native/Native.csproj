@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>15</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Disable</RollForward>
+    <RuntimeFrameworkVersion>11.0.0-rc.3.26522.148</RuntimeFrameworkVersion>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../Shared/*.cs" />
+    <Compile Include="../fixtures/src/Consumer.cs" />
+    <AssemblyMetadata Include="LangVersion" Value="$(LangVersion)" />
+    <AssemblyMetadata Include="RuntimeFrameworkVersion" Value="$(RuntimeFrameworkVersion)" />
+  </ItemGroup>
+</Project>

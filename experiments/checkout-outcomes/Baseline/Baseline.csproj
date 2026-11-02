@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Built by the common RC3 SDK compiler (SDK 8 is not installed); C# version pinned per TFM. -->
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Disable</RollForward>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <LangVersion>12</LangVersion>
+    <RuntimeFrameworkVersion>8.0.33</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <LangVersion>14</LangVersion>
+    <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../Shared/*.cs" />
+    <AssemblyMetadata Include="LangVersion" Value="$(LangVersion)" />
+    <AssemblyMetadata Include="RuntimeFrameworkVersion" Value="$(RuntimeFrameworkVersion)" />
+  </ItemGroup>
+</Project>
