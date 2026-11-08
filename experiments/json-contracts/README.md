@@ -16,7 +16,7 @@ pwsh ./run.ps1 -SourceDirectory . -EvidenceDirectory ./artifacts/repro-01
 Use a fresh directory. The runner writes isolated SDK projects with exact
 RuntimeFrameworkVersion and RollForward=Disable, builds Release with C#15.0,
 no shared compiler/analyzers, and launches positive executables through
-dotnet exec --fx-version. No NuGet packages or package sources are used.
+dotnet exec --fx-version. No PackageReference or third-party package dependency is used. NuGet.Config clears configured sources; the SDK library-packs feed can still appear during restore.
 Compiler identity capture uses the standard Windows SDK installation path;
 adapt that path for a different installation. Runner portability is untested.
 
