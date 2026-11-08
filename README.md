@@ -9,8 +9,11 @@ Reproducible C# experiments comparing runtime behavior, execution time and manag
 | Runtime baseline | How do six synthetic batch workloads compare across .NET 8, .NET 10 and .NET 11 RC1? | [Code and commands](benchmarks/article-001/README.md) | [Measurements and limitations](results/article-001/rc1-baseline-001/README.md) |
 | Runtime Async | How do conventional async implementations compare across runtimes, and what changes with application Runtime Async OFF/ON on .NET 11 RC1? | [Code and commands](benchmarks/article-002/README.md) | [Measurements and methodology](docs/article-002/README.md) |
 | Generated union / Result | How do C# 15 generated union storage and two explicit Result layouts compare? | [Code and commands](experiments/union-result/README.md) | [Both passes and limitations](experiments/union-result/RESULTS.md) |
+| Closed hierarchies | What does C# 15 prove about exhaustive matching and assembly boundaries? | [Source and reproduction](experiments/closed-hierarchies/README.md) | [Compiler observations and limitations](experiments/closed-hierarchies/README.md#observed-results) |
 
 ## Requirements
+
+Toolchain pins are specific to each experiment. Closed hierarchies uses .NET 11 RC3 and normal C# 15 language mode, with a C# 14 / .NET 10 baseline. Its results are compiler diagnostics and functional checks, with no performance benchmark. Follow that directory's exact pins and commands.
 
 The recorded experiments use Windows x64, SDK **11.0.100-rc.1.26425.128**, runtimes **8.0.31**, **10.0.12** and **11.0.0-rc.1.26425.128**, C# 12 (runtime experiments) or C# 15 preview (union experiment), and BenchmarkDotNet **0.16.0-preview.1**. Install the exact versions and run each experiment from its benchmark directory so its `global.json` applies. Both SDK and runtime roll-forward are disabled.
 
