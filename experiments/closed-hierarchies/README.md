@@ -90,8 +90,8 @@ were not tested. No serializer, throughput, allocation or security-boundary clai
 
 Initial sandbox attempts encountered SDK first-use access/Service Control Manager
 restrictions and a Windows Application Control DLL block. Complete observations
-above were obtained in normal-user context. First-use certificate/PATH/workload
-notices do not establish language behavior; compiler CS diagnostics and semantic
+above were obtained in normal-user context. Host setup notices do not establish
+language behavior; compiler CS diagnostics and semantic
 assertions do. Raw machine dumps and local troubleshooting logs are not included.
 
 ## Primary references
